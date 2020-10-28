@@ -7,51 +7,63 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <title>HW1 Frontend</title>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.css"
-    />
-    <link rel="stylesheet" href="./css/styles.css" />
     <script
       src="https://code.jquery.com/jquery-3.1.1.min.js"
       integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
       crossorigin="anonymous"
     ></script>
-    <script
-      type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.js"
-    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
-    <h1 id="header" class="ui red header">
-      Web Programming 99-00 semester
-      <h2 class="ui header center">Homework 1</h2>
-    </h1>
-
-    <h3 id="name" class="ui header center">
-      Majid Taherkhani &nbsp;&nbsp; Fateme Khashei &nbsp;&nbsp; SMahdi Faghih
-    </h3>
-    <br /><br /><br /><br /><br />
-
-    <div id="form" class="ui form error">
-      <div class="field">
-        <label>First Number</label>
-        <input id="input1" type="number" placeholder="Enter first number..." />
-        <label>Second Number</label>
-        <input id="input2" type="number" placeholder="Enter second number..." />
+    <header>
+      <h3>Web Programming 99-00 semester</h3>
+      <div>
+        <h5>Assignment 1</h5>
       </div>
-      <div class="ui error message" , style="display: none">
-        <div class="header">Wrong Input</div>
-        <p>Just numbers all allowed as inputs. Please try again</p>
+    </header>
+    <div class="ui container">
+      <div class="form">
+        <div class="description">Fill the inputs to add two numbers</div>
+        <div class="ui input large">
+          <input id="input1" type="number" placeholder="first number" />
+        </div>
+        <div class="ui input large">
+          <input id="input2" type="number" placeholder="second number" />
+        </div>
+        <!-- <div class="ui error message" style="display: none">
+          <div class="header">Wrong Input</div>
+          <p>Just numbers all allowed as inputs. Please try again</p>
+        </div> -->
+        <div class="buttons">
+          <div class="ui submit button" onclick="calculateSum('nodejs')">
+            NodeJs
+          </div>
+          <div class="ui submit button" onclick="calculateSum('go')">Go</div>
+        </div>
       </div>
-      <div class="ui positive submit button" , onclick="calculateSumNodeJs()">
-        calculate sum => nodejs
-      </div>
-      <div class="ui negative submit button" , onclick="calculateSumGo()">
-        calculate sum => go
+      <div class="form">
+        <div class="description">Enter the line number you want to see</div>
+        <div class="ui input large">
+          <input
+            id="lineNumber"
+            type="number"
+            min="1"
+            max="100"
+            placeholder="first number"
+          />
+        </div>
+        <div class="buttons">
+          <div class="ui submit button" onclick="getLine('nodejs')">NodeJs</div>
+          <div class="ui submit button" onclick="getLine('go')">Go</div>
+        </div>
       </div>
     </div>
+    <footer></footer>
     <script src="./js/script.js"></script>
   </body>
 </html>
