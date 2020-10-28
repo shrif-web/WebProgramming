@@ -1,82 +1,57 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
     <title>HW1 Frontend</title>
-
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.css" />
-
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
-        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.js"></script>
-
-    <script>
-        function calculateSumNodeJs() {
-            let a = document.getElementById("input1").value;
-            let b = document.getElementById("input2").value;
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-
-                    // Examine the text in the response
-                    var answer = JSON.parse(this.responseText);
-                    alert(answer.sum);
-                    // response.text().then(txt => console.log(txt));
-                }
-            };
-            xhttp.open("POST", "http://192.168.1.105:8080/nodejs/sha256", true);
-            xhttp.send("a="+a+",b="+b);
-        }
-        function calculateSumGo() {
-            alert('clicked');
-        }
-    </script>
-
-    <style>
-        h1#header {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        h3#name {
-            color: purple;
-        }
-
-        div#form {
-            width: 500px;
-            margin: 0 auto;
-        }
-    </style>
-
-</head>
-
-<body style="background-color: rgb(3, 168, 209);">
-    <h1 id="header" , class="ui red header">
-        Web Programming 99-00 semester
-        <h2 class="ui header" , style="text-align: center;">Homework 1</h2>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.css"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.js"
+    ></script>
+  </head>
+  <body>
+    <h1 id="header" class="ui red header">
+      Web Programming 99-00 semester
+      <h2 class="ui header center">Homework 1</h2>
     </h1>
 
-    <h3 id="name" , class="ui header" , style="text-align: center;"> Majid Taherkhani &nbsp;&nbsp; Fateme Khashei
-        &nbsp;&nbsp; SMahdi Faghih</h3><br><br><br><br><br>
+    <h3 id="name" class="ui header">
+      Majid Taherkhani &nbsp;&nbsp; Fateme Khashei &nbsp;&nbsp; SMahdi Faghih
+    </h3>
+    <br /><br /><br /><br /><br />
 
-    <div id="form" , class="ui form error">
-        <div class="field">
-            <label>First Number</label>
-            <input id="input1" type="number" placeholder="Enter first number...">
-            <label>Second Number</label>
-            <input id="input2" type="number" placeholder="Enter second number...">
-        </div>
-        <div class="ui error message" , style="display:none">
-            <div class="header">Wrong Input</div>
-            <p>Just numbers all allowed as inputs. Please try again</p>
-        </div>
-        <div class="ui positive submit button" , onclick="calculateSumNodeJs()">calculate sum => nodejs</div>
-        <div class="ui negative submit button" , onclick="calculateSumGo()">calculate sum => go</div>
+    <div id="form" class="ui form error">
+      <div class="field">
+        <label>First Number</label>
+        <input id="input1" type="number" placeholder="Enter first number..." />
+        <label>Second Number</label>
+        <input id="input2" type="number" placeholder="Enter second number..." />
+      </div>
+      <div class="ui error message" , style="display: none">
+        <div class="header">Wrong Input</div>
+        <p>Just numbers all allowed as inputs. Please try again</p>
+      </div>
+      <div class="ui positive submit button" , onclick="calculateSumNodeJs()">
+        calculate sum => nodejs
+      </div>
+      <div class="ui negative submit button" , onclick="calculateSumGo()">
+        calculate sum => go
+      </div>
     </div>
-
-</body>
-
+    <script src="./js/script.js"></script>
+  </body>
 </html>
