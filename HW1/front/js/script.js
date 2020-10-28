@@ -5,6 +5,7 @@ function calculateSum(serverType) {
     const firstNumber = document.getElementById("input1").value;
     const secondNumber = document.getElementById("input2").value;
     sendRequest('POST', `${HOST_API}/${serverType}/sha256`, { firstNumber, secondNumber })
+        // sendRequest('POST', `http://127.0.0.1:8000/sha256`, { firstNumber, secondNumber })
         .then(result => {
             alert(result ? result.sum : FAIL);
         })
