@@ -1,37 +1,43 @@
 package main
 
 import (
-	"io/ioutil"
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
-	"encoding/json"
 )
 
-type reqBodyType struct {
-	firstNumber int
-	secondNumber int
+type SumRequestBody struct {
+	FirstNumber  int `json:"firstNumber"`
+	SecondNumber int `json:"secondNumber"`
 }
 
-func request(w http.ResponseWriter, r *http.Request){
-	if(r.Method != "POST"){
+type SumResponseBody struct {
+	Sum int `json:"sum"`
+}
+
+func sumRequestHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "POST" {
 		fmt.Fprintf(w, "Sorry, only POST methods are supported.")
-		return;
+		return
 	}
 	reqBodyJson, err := ioutil.ReadAll(r.Body)
-    if err != nil {
-        log.Fatal(err)
+	if err != nil {
+		log.Fatal(err)
 	}
-	var reqBody reqBodyType
-	json.Unmarshal(reqBodyJson, &reqBody)
-	fmt.Println(reqBody)
-	fmt.Fprintf(w,"Hello, GO!")
+	sumReq := SumRequestBody{}
+	json.Unmarshal(reqBodyJson, &sumReq)
+	fmt.Printf("%+v\n", sumReq)
+	w.Header().Set("Content-Type", "application/json")
+	fmt.Println((sumReq.FirstNumber + sumReq.SecondNumber))
+	summ := SumResponseBody{Sum: (sumReq.FirstNumber + sumReq.SecondNumber)}
+	json.NewEncoder(w).Encode(summ)
 }
 
 func main() {
-	var port=":8000";
+	var port = ":8000"
 	fmt.Println("Starting Go Server At localhost", port)
-	http.HandleFunc("/",request);
+	http.HandleFunc("/f", sumRequestHandler)
 	http.ListenAndServe(port, nil)
 }
-
