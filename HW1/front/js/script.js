@@ -27,7 +27,7 @@ function calculateSum(serverType) {
 
 function getLine(serverType) {
     const lineNumber = Number(lineNumberInput.value);
-    sendRequest('GET', `${HOST_API}/${serverType}/write?lineNumber=${lineNumber}`, { lineNumber })
+    sendRequest('GET', `${HOST_API}/${serverType}/write?lineNumber=${lineNumber}`)
         .then(result => {
             if (!result) {
                 showError();
