@@ -1,9 +1,10 @@
+const FAIL = "Sorry! We couldnt make the request"
 function calculateSumNodeJs() {
     const firstNumber = document.getElementById("input1").value;
     const secondNumber = document.getElementById("input2").value;
     sendRequest('POST', "http://localhost:8080/", { firstNumber, secondNumber })
         .then(result => {
-            alert(result.sum);
+            alert(result ? result.sum : FAIL);
         })
 }
 
@@ -12,7 +13,7 @@ function calculateSumGo() {
     const secondNumber = document.getElementById("input2").value;
     sendRequest('POST', "http://localhost:8000/", { firstNumber, secondNumber })
         .then(result => {
-            alert(result.sum);
+            alert(result ? result.sum : FAIL);
         })
 }
 
