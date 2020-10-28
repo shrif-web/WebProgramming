@@ -1,0 +1,25 @@
+body {
+  background-color: rgb(3, 168, 209);
+}
+
+h1#header {
+  text-align: center;
+  margin-top: 20px;
+}
+
+h3#name {
+  color: purple;
+}
+
+div#form {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.center {
+  text-align: center;
+}
+
+.error {
+  display: none;
+}
