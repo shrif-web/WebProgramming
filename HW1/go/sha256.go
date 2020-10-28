@@ -31,13 +31,13 @@ func sumRequestHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("%+v\n", sumReq)
 	w.Header().Set("Content-Type", "application/json")
 	fmt.Println((sumReq.FirstNumber + sumReq.SecondNumber))
-	summ := SumResponseBody{Sum: (sumReq.FirstNumber + sumReq.SecondNumber)}
-	json.NewEncoder(w).Encode(summ)
+	sum := SumResponseBody{Sum: (sumReq.FirstNumber + sumReq.SecondNumber)}
+	json.NewEncoder(w).Encode(sum)
 }
 
 func main() {
 	var port = ":8000"
 	fmt.Println("Starting Go Server At localhost", port)
-	http.HandleFunc("/f", sumRequestHandler)
+	http.HandleFunc("/sha256", sumRequestHandler)
 	http.ListenAndServe(port, nil)
 }
