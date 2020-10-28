@@ -12,7 +12,7 @@ function calculateSum(serverType) {
 }
 
 function getLine(serverType) {
-    const lineNumber = document.getElementById("lineNumber").value;
+    const lineNumber = Number(document.getElementById("lineNumber").value);
     sendRequest('GET', `${HOST_API}/${serverType}/write`, { lineNumber })
         .then(result => {
             alert(result ? result : FAIL);
