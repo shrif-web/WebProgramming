@@ -1,6 +1,5 @@
 //set your centos ip in here
 const HOST_API = "http://172.20.10.6"
-const FAIL = "Sorry! We couldnt make the request"
 const firstNumberInput = document.getElementById("input1");
 firstNumberInput.value = 0;
 const secondNumberInput = document.getElementById("input2");
