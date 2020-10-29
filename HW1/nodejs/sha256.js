@@ -17,7 +17,6 @@ app.post("/sha256", (request, response) => {
     if (typeof firstNumber === 'number' && typeof secondNumber === 'number') {
         const sumRaw = (firstNumber + secondNumber).toString();
         const sum = crypto.createHash('sha256').update(sumRaw).digest('hex');
-        console.log(sum)
         response.json({ sum })
     }
     else {
@@ -26,6 +25,7 @@ app.post("/sha256", (request, response) => {
 });
 
 app.get("/write", (req, response) => {
+    console.log("GET /write");
     const lineNumber = Number(req.query.lineNumber);
     if (typeof lineNumber !== 'number' || lineNumber < 1 || lineNumber > 100) {
         return response.status(400).end('Inputs must be numbers');
