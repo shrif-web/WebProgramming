@@ -1,5 +1,6 @@
 const http = require("http");
 const fs = require('fs');
+const readline = require('readline');
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -9,18 +10,35 @@ const hostname = "127.0.0.1";
 const port = 8080;
 
 app.post("/nodejs/sha256", (request, response) => {
-    console.log(`Request came: ${request.url}`);
-
-    try {
-        let parts = request.url.substring(5).split('/')
-        let result = Number(parts[0]) + Number(parts[1])
-        response.json({ sum: result })
-        response.end();
-        console.log(`Response: 200 ${request.url}`);
-        return;
-    } catch (e) {
-        console.log(e);
+    const firstNumber = request.body.firstNumber;
+    const secondNumber = request.body.secondNumber;
+    let sum;
+    if (typeof firstNumber === 'number' && typeof secondNumber === 'number')
+    {
+        sum = Number(parts[0]) + Number(parts[1])
     }
+    else
+    {
+        return response.status(400).end('Inputs must be numbers');
+    }
+    response.json({ sum })
+    response.end();
+});
+
+app.get("/nodejs/write", (request, response) => {
+    const lineNumber = req.body.lineNumber;
+    if (typeof lineNumber !== 'number' || lineNumber < 1 || lineNumber > 100)
+    {
+        return response.status(400).end('Inputs must be numbers');
+    }
+
+    const fileStream = fs.createReadStream('input.txt');
+    const rl = readline.createInterface({
+        input: fileStream,
+        crlfDelay: Infinity
+    });
+    let resault = rl[lineNumber];
+    response.json({ result })
 });
 
 fs.readFile('../front/front.html', function (err, html) {
