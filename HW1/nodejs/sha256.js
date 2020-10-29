@@ -35,6 +35,8 @@ app.get("/write", (req, response) => {
     }
     else{
         return response.status(400).end('Input must be number');
+    if (typeof lineNumber !== 'number' || lineNumber < 1 || lineNumber > 100) {
+        return response.status(400).end(`Inputs must be numbers${typeof lineNumber}`);
     }
     
 });

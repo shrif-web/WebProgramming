@@ -1,0 +1,14 @@
+● go-app.service - go-app
+   Loaded: loaded (/usr/lib/systemd/system/go-app.service; disabled; vendor preset: disabled)
+   Active: inactive (dead)
+
+Oct 27 15:20:26 fatteme systemd[1]: Started go-app.
+Oct 27 15:20:26 fatteme systemd[1]: [0;1;39m[0;1;31m[0;1;39mgo-app.service: Main process exited, code=exited, status=203/EXEC[0m
+Oct 27 15:20:26 fatteme systemd[1]: [0;1;39m[0;1;31m[0;1;39mgo-app.service: Failed with result 'exit-code'.[0m
+Oct 27 15:20:29 fatteme systemd[1]: go-app.service: Service RestartSec=2s expired, scheduling restart.
+Oct 27 15:20:29 fatteme systemd[1]: go-app.service: Scheduled restart job, restart counter is at 69.
+Oct 27 15:20:29 fatteme systemd[1]: Stopped go-app.
+Oct 27 15:20:29 fatteme systemd[1]: Started go-app.
+Oct 27 15:20:29 fatteme hello[29261]: Hello, GO!
+Oct 28 00:00:49 fatteme systemd[1]: Stopping go-app...
+Oct 28 00:00:49 fatteme systemd[1]: Stopped go-app.
