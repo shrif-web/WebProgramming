@@ -5,3 +5,5 @@ WebProgramming Project and HomeWorks (99 Fall semester)
   this is a simple program to undrestand basics of web programming
   the first part of the program adds two numbers by sha256
   the second part gives you a line from a 100 line file
+## nodejs 
+run npm install to install requirements

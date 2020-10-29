@@ -61,6 +61,8 @@ body .container .form .description {
 }
 
 body .container .form .segment {
+  line-break: anywhere;
+  line-break: break-all;
   width: 200px;
   margin: 0;
   margin-bottom: 20px;
