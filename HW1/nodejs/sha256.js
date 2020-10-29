@@ -1,6 +1,6 @@
 const http = require("http");
 const fs = require('fs');
-const readline = require('readline');
+const nthline = require('nthline');
 const express = require("express");
 const crypto = require('crypto');
 const cors = require("cors");
@@ -16,31 +16,28 @@ app.post("/sha256", (request, response) => {
     const firstNumber = request.body.firstNumber;
     const secondNumber = request.body.secondNumber;
     if (typeof firstNumber === 'number' && typeof secondNumber === 'number') {
-        const sumRaw = firstNumber + secondNumber;
-        const sum = crypto.createHash('sha256').update(sumRaw).digest('hex');
+        const sumRaw = (firstNumber + secondNumber).toString();
+        const sum = crypto.createHash('sha256').update(sumRaw).digest('base64');
+        console.log(sum)
         response.json({ sum })
-        response.end();
     }
     else {
         return response.status(400).end('Inputs must be numbers');
     }
 });
 
-app.get("/write", (request, response) => {
+app.get("/write", (req, response) => {
     console.log("GET /write");
     const lineNumber = req.body.lineNumber;
     if (typeof lineNumber !== 'number' || lineNumber < 1 || lineNumber > 100) {
         return response.status(400).end('Inputs must be numbers');
     }
 
-    const fileStream = fs.createReadStream('input.txt');
-    const rl = readline.createInterface({
-        input: fileStream,
-        crlfDelay: Infinity
-    });
-    let resault = rl[lineNumber];
-    response.json({ result })
+    nthline(lineNumber-1, 'input.txt')
+        .then(line => response.json({ line }))
+
 });
+
 
 app.listen(port, () => {
     console.log(`NodeJs Server is listening at http://127.0.0.1:${port}`);
