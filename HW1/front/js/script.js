@@ -34,7 +34,7 @@ function getLine(serverType) {
                 showError();
                 return;
             }
-            line.innerText = result;
+            line.innerText = result.line;
         })
 }
 
