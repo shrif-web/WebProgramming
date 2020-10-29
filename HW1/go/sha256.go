@@ -59,12 +59,16 @@ func line(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Sorry, only POST methods are supported.")
 		return
 	}
-	reqBodyJson, err := ioutil.ReadAll(r.Body)
-	if err != nil {
-		log.Fatal(err)
+	liness, ok := r.URL.Query()["lineNumber"]
+
+	if !ok || len(liness[0]) < 1 {
+		log.Println("Url Param 'key' is missing")
+		return
 	}
-	lineN := LineNumber{}
-	json.Unmarshal(reqBodyJson, &lineN)
+
+	key := liness[0]
+	fmt.Println(string(key))
+	lineNumber, _ := strconv.Atoi(key)
 
 	fileIO, err := os.OpenFile("file.txt", os.O_RDWR, 0600)
 	if err != nil {
@@ -79,7 +83,7 @@ func line(w http.ResponseWriter, r *http.Request) {
 	lines := strings.Split(string(rawBytes), "\n")
 	w.Header().Set("Content-Type", "application/json")
 	for i, line := range lines {
-		if i == lineN.Line-1 {
+		if i == lineNumber-1 {
 			if i != 100 {
 				runes := []rune(line)
 				json.NewEncoder(w).Encode(LineContent{string(runes[0 : len(line)-1])})
