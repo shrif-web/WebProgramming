@@ -17,7 +17,7 @@ app.post("/sha256", (request, response) => {
     const secondNumber = request.body.secondNumber;
     if (typeof firstNumber === 'number' && typeof secondNumber === 'number') {
         const sumRaw = (firstNumber + secondNumber).toString();
-        const sum = crypto.createHash('sha256').update(sumRaw).digest('base64');
+        const sum = crypto.createHash('sha256').update(sumRaw).digest('hex');
         console.log(sum)
         response.json({ sum })
     }
