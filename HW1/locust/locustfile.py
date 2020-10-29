@@ -6,7 +6,7 @@ class QuickstartUser(HttpUser):
 
     @task
     def sumNodejs(self):
-        self.client.post("/nodejs/sha256", 
+        self.client.post("/nodejs/sha256", json=
         {
             "firstNumber": 1,
             "secondNumber": 2
@@ -14,7 +14,7 @@ class QuickstartUser(HttpUser):
 
     @task
     def sumGo(self):
-        self.client.post("/go/sha256", 
+        self.client.post("/go/sha256", json=
         {
             "firstNumber": 3,
             "secondNumber": 4
