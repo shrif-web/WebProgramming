@@ -12,7 +12,7 @@ WebProgramming Project and HomeWorks (99 Fall semester)
   - enjoy! :)
 
 ## nodejs 
-run ```npm install``` to install requirements
+run ```npm install``` in nodejs directory to install requirements
 
 ## go
 nothing special is needed
