@@ -28,7 +28,7 @@ app.get("/write", (req, response) => {
     console.log("GET /write");
     const lineNumber = Number(req.query.lineNumber);
     if (typeof lineNumber !== 'number' || lineNumber < 1 || lineNumber > 100) {
-        return response.status(400).end('Inputs must be numbers');
+        return response.status(400).end(`Inputs must be numbers${typeof lineNumber}`);
     }
     nthline(lineNumber - 1, 'input.txt')
         .then(line => response.json({ line }))
