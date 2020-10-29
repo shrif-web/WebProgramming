@@ -34,11 +34,8 @@ app.get("/write", (req, response) => {
         nthline(lineNumber - 1, 'input.txt').then(line => response.json({ line }))
     }
     else{
-        return response.status(400).end('Input must be number');
-    if (typeof lineNumber !== 'number' || lineNumber < 1 || lineNumber > 100) {
         return response.status(400).end(`Inputs must be numbers${typeof lineNumber}`);
-    }
-    
+    }  
 });
 
 
