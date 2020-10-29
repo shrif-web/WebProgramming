@@ -16,3 +16,6 @@ run ```npm install``` in nodejs directory to install requirements
 
 ## go
 run ```go build sha256.go``` in go directory
+
+## locust
+after installing locust using ```pip3 install locust```, run locust command in the project locust folder. Then go to 127.0.0.1:8089 and start testing
