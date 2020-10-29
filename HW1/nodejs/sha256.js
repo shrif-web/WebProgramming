@@ -2,20 +2,24 @@ const http = require("http");
 const fs = require('fs');
 const readline = require('readline');
 const express = require("express");
-const app = express();
+const crypto = require('crypto');
 const cors = require("cors");
+const app = express();
 app.use(cors());
+app.use(express.json());
 
 const hostname = "127.0.0.1";
-const port = 8080;
+const port = 8000;
 
 app.post("/nodejs/sha256", (request, response) => {
+    console.log("POST /nodejs/sha256");
     const firstNumber = request.body.firstNumber;
     const secondNumber = request.body.secondNumber;
     let sum;
     if (typeof firstNumber === 'number' && typeof secondNumber === 'number')
     {
-        sum = Number(parts[0]) + Number(parts[1])
+        sum = firstNumber + secondNumber;
+        sum = crypto.createHash('sha256').update(sum).digest('hex');
     }
     else
     {
@@ -26,6 +30,7 @@ app.post("/nodejs/sha256", (request, response) => {
 });
 
 app.get("/nodejs/write", (request, response) => {
+    console.log("GET /nodejs/write");
     const lineNumber = req.body.lineNumber;
     if (typeof lineNumber !== 'number' || lineNumber < 1 || lineNumber > 100)
     {
