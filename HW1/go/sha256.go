@@ -1,6 +1,8 @@
 package main
 
 import (
+	"crypto/sha256"
+	"encoding/hex"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -16,7 +18,7 @@ type SumRequestBody struct {
 }
 
 type SumResponseBody struct {
-	Sum int `json:"sum"`
+	Sum string `json:"sum"`
 }
 
 type LineNumber struct {
@@ -41,12 +43,19 @@ func sumRequestHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("%+v\n", sumReq)
 	w.Header().Set("Content-Type", "application/json")
 	fmt.Println((sumReq.FirstNumber + sumReq.SecondNumber))
-	sum := SumResponseBody{Sum: (sumReq.FirstNumber + sumReq.SecondNumber)}
-	json.NewEncoder(w).Encode(sum)
+	// sum := SumResponseBody{Sum: (sumReq.FirstNumber + sumReq.SecondNumber)}
+	sum := sumReq.FirstNumber + sumReq.SecondNumber
+	bs := make([]byte, sum)
+	hash := sha256.New()
+	hash.Write(bs)
+	md := hash.Sum(nil)
+	mdStr := hex.EncodeToString(md)
+	result := SumResponseBody{Sum: mdStr}
+	json.NewEncoder(w).Encode(result)
 }
 
 func line(w http.ResponseWriter, r *http.Request) {
-	if r.Method != "POST" {
+	if r.Method != "GET" {
 		fmt.Fprintf(w, "Sorry, only POST methods are supported.")
 		return
 	}
