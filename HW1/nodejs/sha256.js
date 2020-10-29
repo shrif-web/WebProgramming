@@ -26,8 +26,7 @@ app.post("/sha256", (request, response) => {
 });
 
 app.get("/write", (req, response) => {
-    console.log("GET /write");
-    const lineNumber = req.body.lineNumber;
+    const lineNumber = Number(req.query.lineNumber);
     if (typeof lineNumber !== 'number' || lineNumber < 1 || lineNumber > 100) {
         return response.status(400).end('Inputs must be numbers');
     }

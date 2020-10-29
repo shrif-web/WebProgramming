@@ -16,7 +16,6 @@ function calculateSum(serverType) {
     const firstNumber = Number(firstNumberInput.value);
     const secondNumber = Number(secondNumberInput.value);
     sendRequest('POST', `${HOST_API}/${serverType}/sha256`, { firstNumber, secondNumber })
-        // sendRequest('POST', `http://127.0.0.1:8000/sha256`, { firstNumber, secondNumber })
         .then(result => {
             if (!result) {
                 showError();
@@ -28,7 +27,7 @@ function calculateSum(serverType) {
 
 function getLine(serverType) {
     const lineNumber = Number(lineNumberInput.value);
-    sendRequest('GET', `${HOST_API}/${serverType}/write`, { lineNumber })
+    sendRequest('GET', `${HOST_API}/${serverType}/write?lineNumber=${lineNumber}`, { lineNumber })
         .then(result => {
             if (!result) {
                 showError();
