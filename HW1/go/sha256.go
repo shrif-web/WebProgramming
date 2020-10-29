@@ -66,7 +66,7 @@ func line(w http.ResponseWriter, r *http.Request) {
 	lineN := LineNumber{}
 	json.Unmarshal(reqBodyJson, &lineN)
 
-	fileIO, err := os.OpenFile("file.txt", os.O_RDWR, 0600)
+	fileIO, err := os.OpenFile("input.txt", os.O_RDWR, 0600)
 	if err != nil {
 		panic(err)
 	}
