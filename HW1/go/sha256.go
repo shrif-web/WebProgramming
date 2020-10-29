@@ -70,6 +70,11 @@ func line(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(string(key))
 	lineNumber, _ := strconv.Atoi(key)
 
+	if lineNumber < 1 || lineNumber > 100 {
+		fmt.Fprintf(w, "Input must be between 1 and 100")
+		return
+	}
+
 	fileIO, err := os.OpenFile("input.txt", os.O_RDWR, 0600)
 	if err != nil {
 		panic(err)
