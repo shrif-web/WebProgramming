@@ -9,6 +9,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strconv"
 	"strings"
 )
 
@@ -43,12 +44,11 @@ func sumRequestHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("%+v\n", sumReq)
 	w.Header().Set("Content-Type", "application/json")
 	fmt.Println((sumReq.FirstNumber + sumReq.SecondNumber))
-	// sum := SumResponseBody{Sum: (sumReq.FirstNumber + sumReq.SecondNumber)}
+
 	sum := sumReq.FirstNumber + sumReq.SecondNumber
-	bs := make([]byte, sum)
-	hash := sha256.New()
-	hash.Write(bs)
-	md := hash.Sum(nil)
+	h := sha256.New()
+	h.Write([]byte(strconv.Itoa(sum)))
+	md := h.Sum(nil)
 	mdStr := hex.EncodeToString(md)
 	result := SumResponseBody{Sum: mdStr}
 	json.NewEncoder(w).Encode(result)
