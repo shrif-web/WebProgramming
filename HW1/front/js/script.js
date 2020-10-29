@@ -1,24 +1,52 @@
 //set your centos ip in here
 const HOST_API = "http://172.20.10.6"
 const FAIL = "Sorry! We couldnt make the request"
+const firstNumberInput = document.getElementById("input1");
+firstNumberInput.value = 0;
+const secondNumberInput = document.getElementById("input2");
+secondNumberInput.value = 0;
+const sum = document.getElementById("sum");
+sum.innerText = 0;
+const lineNumberInput = document.getElementById("lineNumber");
+lineNumberInput.value = 1;
+const line = document.getElementById("line");
+line.innerText = '...';
+const errorMessage = document.getElementById('errorMessage');
+
 function calculateSum(serverType) {
-    const firstNumber = Number(document.getElementById("input1").value);
-    const secondNumber = Number(document.getElementById("input2").value);
+    const firstNumber = Number(firstNumberInput.value);
+    const secondNumber = Number(secondNumberInput.value);
     sendRequest('POST', `${HOST_API}/${serverType}/sha256`, { firstNumber, secondNumber })
         // sendRequest('POST', `http://127.0.0.1:8000/sha256`, { firstNumber, secondNumber })
         .then(result => {
-            alert(result ? result.sum : FAIL);
+            if (!result) {
+                showError();
+                return;
+            }
+            sum.innerText = result.sum;
         })
 }
 
 function getLine(serverType) {
-    const lineNumber = Number(document.getElementById("lineNumber").value);
+    const lineNumber = Number(lineNumberInput.value);
     sendRequest('GET', `${HOST_API}/${serverType}/write`, { lineNumber })
         .then(result => {
-            alert(result ? result : FAIL);
+            if (!result) {
+                showError();
+                return;
+            }
+            line.innerText = result;
         })
 }
 
+function showError(error) {
+    $('#errorModal').modal('show');
+    errorMessage.innerText = error || 'Seems like there has been a problem in connections'
+}
+
+function closeError() {
+    $('#errorModal').modal('hide');
+}
 
 function sendRequest(type, url, payload) {
     var myHeaders = new Headers();
@@ -29,10 +57,8 @@ function sendRequest(type, url, payload) {
         body: JSON.stringify(payload),
         redirect: 'follow'
     };
-    console.log(payload)
-    console.log(requestOptions.body)
     return fetch(url, requestOptions)
         .then(response => response.text())
         .then(result => JSON.parse(result))
-        .catch(error => console.error(error));
+        .catch(error => showError(error));
 }

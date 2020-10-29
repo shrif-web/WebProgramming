@@ -36,10 +36,7 @@
         <div class="ui input large">
           <input id="input2" type="number" placeholder="second number" />
         </div>
-        <!-- <div class="ui error message" style="display: none">
-          <div class="header">Wrong Input</div>
-          <p>Just numbers all allowed as inputs. Please try again</p>
-        </div> -->
+        <div class="ui segment">sum is: <span id="sum"></span></div>
         <div class="buttons">
           <div class="ui submit button" onclick="calculateSum('nodejs')">
             NodeJs
@@ -60,12 +57,27 @@
             placeholder="line number"
           />
         </div>
+        <div class="ui segment"><span id="line"></span></div>
         <div class="buttons">
           <div class="ui submit button" onclick="getLine('nodejs')">NodeJs</div>
           <div class="ui submit button" onclick="getLine('go')">Go</div>
         </div>
       </div>
     </div>
+
+    <div class="ui basic modal" id="errorModal">
+      <div class="ui icon header">
+        <i class="close icon red"></i>
+        Sorry! Operation failed!
+      </div>
+      <div class="content">
+        <p id="errorMessage" class="center"></p>
+      </div>
+      <div class="actions">
+        <div class="ui inverted button" onclick="closeError(false)">OK</div>
+      </div>
+    </div>
+
     <footer>
       Created By : fatteme khashei, smehdi faghih, majid taherkhani
     </footer>
