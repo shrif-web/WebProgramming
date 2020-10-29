@@ -31,7 +31,7 @@ app.get("/write", (req, response) => {
         if (lineNumber < 1 || lineNumber > 100) {
             return response.status(400).end('Input must be between 1 and 100');
         }
-        nthline(lineNumber - 1, '../input.txt').then(line => response.json({ line }))
+        nthline(lineNumber - 1, 'input.txt').then(line => response.json({ line }))
     }
     else {
         return response.status(400).end(`Input must be number`);
