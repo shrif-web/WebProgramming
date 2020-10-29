@@ -70,7 +70,7 @@ func line(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(string(key))
 	lineNumber, _ := strconv.Atoi(key)
 
-	fileIO, err := os.OpenFile("file.txt", os.O_RDWR, 0600)
+	fileIO, err := os.OpenFile("input.txt", os.O_RDWR, 0600)
 	if err != nil {
 		panic(err)
 	}

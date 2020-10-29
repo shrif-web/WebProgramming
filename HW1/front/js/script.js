@@ -1,4 +1,4 @@
-//set your centos ip in here
+//set your centos server ip in here
 const HOST_API = "http://172.20.10.6"
 const firstNumberInput = document.getElementById("input1");
 firstNumberInput.value = 0;
@@ -9,14 +9,13 @@ sum.innerText = 0;
 const lineNumberInput = document.getElementById("lineNumber");
 lineNumberInput.value = 1;
 const line = document.getElementById("line");
-line.innerText = '...';
+line.innerText = 'This is a line';
 const errorMessage = document.getElementById('errorMessage');
 
 function calculateSum(serverType) {
     const firstNumber = Number(firstNumberInput.value);
     const secondNumber = Number(secondNumberInput.value);
     sendRequest('POST', `${HOST_API}/${serverType}/sha256`, { firstNumber, secondNumber })
-        // sendRequest('POST', `http://127.0.0.1:8000/sha256`, { firstNumber, secondNumber })
         .then(result => {
             if (!result) {
                 showError();
@@ -28,7 +27,7 @@ function calculateSum(serverType) {
 
 function getLine(serverType) {
     const lineNumber = Number(lineNumberInput.value);
-    sendRequest('GET', `${HOST_API}/${serverType}/write`, { lineNumber })
+    sendRequest('GET', `${HOST_API}/${serverType}/write?lineNumber=${lineNumber}`)
         .then(result => {
             if (!result) {
                 showError();
