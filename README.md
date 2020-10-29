@@ -15,4 +15,4 @@ WebProgramming Project and HomeWorks (99 Fall semester)
 run ```npm install``` in nodejs directory to install requirements
 
 ## go
-nothing special is needed
+run ```go build sha256.go``` in go directory
