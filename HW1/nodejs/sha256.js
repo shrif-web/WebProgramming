@@ -14,7 +14,7 @@ app.post("/sha256", (request, response) => {
     console.log("POST /sha256");
     const firstNumber = request.body.firstNumber;
     const secondNumber = request.body.secondNumber;
-    if (typeof(firstNumber) == "number" && typeof(secondNumber) == "number") {
+    if (typeof (firstNumber) == "number" && typeof (secondNumber) == "number") {
         const sumRaw = (firstNumber + secondNumber).toString();
         const sum = crypto.createHash('sha256').update(sumRaw).digest('hex');
         response.json({ sum })
@@ -27,15 +27,15 @@ app.post("/sha256", (request, response) => {
 app.get("/write", (req, response) => {
     console.log("GET /write");
     const lineNumber = Number(req.query.lineNumber);
-    if (typeof(lineNumber) == 'number') {
-        if (lineNumber < 1 || lineNumber > 100){
+    if (typeof (lineNumber) == 'number') {
+        if (lineNumber < 1 || lineNumber > 100) {
             return response.status(400).end('Input must be between 1 and 100');
         }
         nthline(lineNumber - 1, 'input.txt').then(line => response.json({ line }))
     }
-    else{
-        return response.status(400).end(`Inputs must be numbers${typeof lineNumber}`);
-    }  
+    else {
+        return response.status(400).end(`Input must be number`);
+    }
 });
 
 
