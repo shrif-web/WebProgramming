@@ -62,7 +62,7 @@ func line(w http.ResponseWriter, r *http.Request) {
 	liness, ok := r.URL.Query()["lineNumber"]
 
 	if !ok || len(liness[0]) < 1 {
-		log.Println("Url Param 'key' is missing")
+		log.Println("Url Param 'line' is missing")
 		return
 	}
 
@@ -89,11 +89,11 @@ func line(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	for i, line := range lines {
 		if i == lineNumber-1 {
-			if i != 100 {
+			if i == 99 {
+				json.NewEncoder(w).Encode(LineContent{line})
+			} else {
 				runes := []rune(line)
 				json.NewEncoder(w).Encode(LineContent{string(runes[0 : len(line)-1])})
-			} else {
-				json.NewEncoder(w).Encode(LineContent{line})
 			}
 		}
 	}
