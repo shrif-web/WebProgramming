@@ -3,19 +3,55 @@ WebProgramming Project and HomeWorks (99 Fall semester)
 
 # Assignment 1
   this is a simple program to undrestand basics of web programming
+  
   the first part of the program adds two numbers by sha256
+  
   the second part gives you a line from a 100 line file
+  
   - clone the repository in your centOS virtual machine
-  - use the configs and set your local roots in there
-  - run the programs
+  - run ```chmod +x {YOUR_PROJECT_DIRECTORY}```
+  - use the configs in sections below to create service and set your local roots in there
+  - dont forget ```setenforce 0```
+  - run services
   - type your virtualmachine ip on your browser
   - enjoy! :)
 
 ## nodejs 
 run ```npm install``` in nodejs directory to install requirements
+### node service
+```
+[Unit]
+Description=node-app
+[Service]
+Type=simple
+Restart=always
+RestartSec=2s
+#adress of your input.txt file
+WorkingDirectory=/root/WebProgramming/HW1/nodejs
+#adress of your nodejs project
+ExecStart=/usr/bin/node /root/WebProgramming/HW1/nodejs/sha256.js
+[Install]
+WantedBy=multi-user.target
+```
+
 
 ## go
 run ```go build sha256.go``` in go directory
+### go service
+```
+[Unit]
+Description=go-app
+[Service]
+Type=simple
+Restart=always
+RestartSec=2s
+#adress of your input.txt file
+WorkingDirectory=/root/WebProgramming/HW1/go
+#adress of your built go project
+ExecStart=/root/WebProgramming/HW1/go/sha256
+[Install]
+WantedBy=multi-user.target
+```
 
 ## locust
 after installing locust using ```pip3 install locust```, run locust command in the project locust folder. Then go to 127.0.0.1:8089 and start testing!
