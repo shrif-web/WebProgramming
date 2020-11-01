@@ -56,7 +56,7 @@ func sumRequestHandler(w http.ResponseWriter, r *http.Request) {
 
 func line(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
-		fmt.Fprintf(w, "Sorry, only POST methods are supported.")
+		fmt.Fprintf(w, "Sorry, only GET methods are supported.")
 		return
 	}
 	liness, ok := r.URL.Query()["lineNumber"]
