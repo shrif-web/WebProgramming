@@ -13,7 +13,7 @@ body {
 }
 
 body > header {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgb(20, 20, 20);
   color: white;
   position: fixed;
   top: 0;
@@ -44,11 +44,13 @@ body .container > hr {
 }
 
 body .container .form {
+  width: 300px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  margin: auto;
 }
 
 body .container .form .title {
@@ -58,13 +60,15 @@ body .container .form .title {
 }
 
 body .container .form .description {
+  width: 220px;
   margin-bottom: 20px;
 }
 
 body .container .form .segment {
   line-break: anywhere;
   line-break: break-all;
-  width: 200px;
+  width: 100%;
+  max-width: 100%;
   margin: 0;
   margin-bottom: 20px;
   padding: 0.67857143em 1em;
@@ -74,22 +78,27 @@ body .container .form .segment {
 
 body .container .form .input {
   margin-bottom: 20px;
-  width: 200px;
+  width: 100%;
 }
 body .container .form .input > input {
   text-align: center;
 }
 
 body .container .form .buttons {
+  width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
+}
+body .container .form .buttons > span {
+  margin: 0 10px;
+  color: #00000070;
 }
 
 body .container .form .buttons .button {
-  margin: 0 10px;
   cursor: pointer;
+  flex: 1 1 33%;
+  margin: 0;
 }
 
 body .modal .actions {
